@@ -77,6 +77,7 @@ function App() {
               <Countdown
                 targetDate={nextRelease.release_date}
                 title={nextRelease.title}
+                presaveLink={nextRelease.presave_link}
               />
             </div>
           </div>

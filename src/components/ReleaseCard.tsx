@@ -9,6 +9,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   const releaseDate = new Date(release.release_date);
   const isReleased = releaseDate.getTime() <= new Date().getTime();
   const hasLinks = release.spotify_link || release.apple_music_link || release.youtube_link;
+  const hasPresave = !isReleased && release.presave_link;
 
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all">
@@ -69,6 +70,18 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                 </a>
               )}
             </div>
+          )}
+
+          {hasPresave && (
+            <a
+              href={release.presave_link!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-300 rounded-lg text-sm font-medium transition-colors"
+            >
+              <Music className="w-4 h-4" />
+              Presave
+            </a>
           )}
         </div>
       </div>

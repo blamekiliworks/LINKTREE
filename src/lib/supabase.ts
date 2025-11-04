@@ -13,6 +13,7 @@ export interface Release {
   spotify_link: string | null;
   apple_music_link: string | null;
   youtube_link: string | null;
+  presave_link: string | null;
   is_released: boolean;
   order_index: number;
   created_at: string;
