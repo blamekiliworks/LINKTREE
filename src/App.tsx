@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { supabase, Release } from './lib/supabase';
-import { Countdown } from './components/Countdown';
 import { ReleaseCard } from './components/ReleaseCard';
 import { Music, Youtube, Instagram } from 'lucide-react';
 
 function App() {
   const [releases, setReleases] = useState<Release[]>([]);
   const [loading, setLoading] = useState(true);
-  const [nextRelease, setNextRelease] = useState<Release | null>(null);
 
   useEffect(() => {
     async function fetchReleases() {
@@ -20,12 +18,6 @@ function App() {
         console.error('Error fetching releases:', error);
       } else if (data) {
         setReleases(data);
-
-        const now = new Date().getTime();
-        const upcoming = data.find(
-          (release) => new Date(release.release_date).getTime() > now
-        );
-        setNextRelease(upcoming || null);
       }
       setLoading(false);
     }
@@ -70,23 +62,11 @@ function App() {
             </p>
           </div>
 
-        {nextRelease && (
-          <div className="mb-20 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
-            <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
-              <Countdown
-                targetDate={nextRelease.release_date}
-                title={nextRelease.title}
-              />
-            </div>
-          </div>
-        )}
-
         <div className="space-y-4">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-transparent"></div>
             <h2 className="text-2xl font-black text-white uppercase tracking-wider">
-              <span className="text-cyan-400">&gt;</span> Release Schedule
+              <span className="text-cyan-400">&gt;</span> Lanzamientos
             </h2>
           </div>
           {releases.map((release) => (
