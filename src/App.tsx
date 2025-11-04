@@ -63,10 +63,10 @@ function App() {
         <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
           <div className="text-center mb-20">
             <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-wider uppercase">
-              <span className="text-cyan-400">[</span>MUSIC<span className="text-cyan-400">]</span>
+              <span className="text-cyan-400">[</span>GÉNESIS<span className="text-cyan-400">]</span>
             </h1>
             <p className="text-cyan-300 text-sm uppercase tracking-[0.2em] font-mono font-bold">
-              &gt; RELEASE PROTOCOL INITIATED
+              &gt; SE VIENEN COSITAS...
             </p>
           </div>
 
