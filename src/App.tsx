@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase, Release } from './lib/supabase';
 import { Countdown } from './components/Countdown';
 import { ReleaseCard } from './components/ReleaseCard';
+import { Music, Youtube, Instagram } from 'lucide-react';
 
 function App() {
   const [releases, setReleases] = useState<Release[]>([]);
@@ -93,10 +94,50 @@ function App() {
           ))}
         </div>
 
-          <div className="mt-20 text-center border-t border-cyan-500/30 pt-8">
-            <p className="text-cyan-300/70 text-xs uppercase tracking-widest font-mono font-bold">
-              4 SINGLES EVERY 2 WEEKS → 1 MONTH PAUSE → FULL ALBUM + 6 TRACKS
-            </p>
+          <div className="mt-20 border-t border-cyan-500/30 pt-12">
+            <div className="flex justify-center items-center gap-6">
+              <a
+                href="https://open.spotify.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
+              >
+                <Music className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                <span className="text-cyan-300 font-mono font-bold text-sm uppercase tracking-wider">Spotify</span>
+              </a>
+
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
+              >
+                <Youtube className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                <span className="text-cyan-300 font-mono font-bold text-sm uppercase tracking-wider">YouTube</span>
+              </a>
+
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
+              >
+                <Instagram className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                <span className="text-cyan-300 font-mono font-bold text-sm uppercase tracking-wider">Instagram</span>
+              </a>
+
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
+              >
+                <svg className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
+                <span className="text-cyan-300 font-mono font-bold text-sm uppercase tracking-wider">TikTok</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
