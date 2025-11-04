@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase, Release } from './lib/supabase';
 import { Countdown } from './components/Countdown';
 import { ReleaseCard } from './components/ReleaseCard';
-import { Music2 } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 function App() {
   const [releases, setReleases] = useState<Release[]>([]);
@@ -35,52 +35,75 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-cyan-400 text-xl font-mono font-bold">
+          <span className="animate-pulse">[LOADING...]</span>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bS0yIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyem0wIDRoMnYtMmgtMnYyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-40"></div>
+    <div className="min-h-screen bg-black">
+      <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
+        <img
+          src="/extasis.shot.1-6(2).jpg"
+          alt="Header"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black"></div>
 
-      <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full mb-6 shadow-lg shadow-blue-500/50">
-            <Music2 className="w-10 h-10 text-white" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <div className="mb-6">
+            <div className="border-2 border-cyan-400 p-4 rounded-lg bg-black/50 backdrop-blur inline-block">
+              <Zap className="w-8 h-8 text-cyan-400" />
+            </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-            Music Releases
+          <h1 className="text-6xl md:text-8xl font-black text-white mb-4 tracking-wider uppercase">
+            <span className="text-cyan-400">[</span>MUSIC<span className="text-cyan-400">]</span>
           </h1>
-          <p className="text-gray-400 text-lg">
-            Follow the journey as new music drops
+          <p className="text-cyan-300 text-sm uppercase tracking-[0.2em] font-mono font-bold">
+            &gt; RELEASE PROTOCOL INITIATED
           </p>
         </div>
+      </div>
 
-        {nextRelease && (
-          <div className="mb-16 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl">
-            <Countdown
-              targetDate={nextRelease.release_date}
-              title={nextRelease.title}
-            />
+      <div className="relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
+          {nextRelease && (
+            <div className="mb-20 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
+              <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
+                <Countdown
+                  targetDate={nextRelease.release_date}
+                  title={nextRelease.title}
+                />
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-transparent"></div>
+              <h2 className="text-2xl font-black text-white uppercase tracking-wider">
+                <span className="text-cyan-400">&gt;</span> Release Schedule
+              </h2>
+            </div>
+            {releases.map((release) => (
+              <ReleaseCard key={release.id} release={release} />
+            ))}
           </div>
-        )}
 
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-            <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full"></div>
-            Release Schedule
-          </h2>
-          {releases.map((release) => (
-            <ReleaseCard key={release.id} release={release} />
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-gray-500 text-sm">
-            4 singles releasing every 2 weeks, followed by a full album with 6 additional tracks
-          </p>
+          <div className="mt-20 text-center border-t border-cyan-500/30 pt-8">
+            <p className="text-cyan-300/70 text-xs uppercase tracking-widest font-mono font-bold">
+              4 SINGLES EVERY 2 WEEKS → 1 MONTH PAUSE → FULL ALBUM + 6 TRACKS
+            </p>
+          </div>
         </div>
       </div>
     </div>
