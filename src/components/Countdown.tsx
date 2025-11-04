@@ -21,9 +21,25 @@ export function Countdown({ targetDate, title, presaveLink }: CountdownProps) {
 
   return (
     <div className="text-center">
-      <h2 className="text-3xl font-bold text-white mb-8">{title}</h2>
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex-1"></div>
+        <h2 className="text-3xl font-bold text-white">{title}</h2>
+        <div className="flex-1 flex justify-end">
+          {presaveLink && (
+            <a
+              href={presaveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/15 border border-white/20 text-gray-300 hover:text-white rounded-md text-xs font-medium transition-all"
+            >
+              <Music className="w-3.5 h-3.5" />
+              Presave
+            </a>
+          )}
+        </div>
+      </div>
 
-      <div className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-8">
+      <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
         <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
           <div className="text-4xl font-bold text-white mb-1">{timeLeft.days}</div>
           <div className="text-gray-400 text-xs uppercase tracking-wider">Días</div>
@@ -41,18 +57,6 @@ export function Countdown({ targetDate, title, presaveLink }: CountdownProps) {
           <div className="text-gray-400 text-xs uppercase tracking-wider">Seg</div>
         </div>
       </div>
-
-      {presaveLink && (
-        <a
-          href={presaveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-400 hover:to-pink-400 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105"
-        >
-          <Music className="w-5 h-5" />
-          Presave Ahora
-        </a>
-      )}
     </div>
   );
 }

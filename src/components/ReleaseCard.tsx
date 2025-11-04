@@ -23,12 +23,25 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
         </div>
 
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-xl font-bold text-white">{release.title}</h3>
-            {isReleased && (
-              <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-medium rounded-full">
-                DISPONIBLE
-              </span>
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-2">
+              <h3 className="text-xl font-bold text-white">{release.title}</h3>
+              {isReleased && (
+                <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-medium rounded-full">
+                  DISPONIBLE
+                </span>
+              )}
+            </div>
+            {hasPresave && (
+              <a
+                href={release.presave_link!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1 bg-white/10 hover:bg-white/15 border border-white/20 text-gray-300 hover:text-white rounded-md text-xs font-medium transition-all"
+              >
+                <Music className="w-3 h-3" />
+                Presave
+              </a>
             )}
           </div>
 
@@ -70,18 +83,6 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                 </a>
               )}
             </div>
-          )}
-
-          {hasPresave && (
-            <a
-              href={release.presave_link!}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 text-cyan-300 rounded-lg text-sm font-medium transition-colors"
-            >
-              <Music className="w-4 h-4" />
-              Presave
-            </a>
           )}
         </div>
       </div>
