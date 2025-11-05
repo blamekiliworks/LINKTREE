@@ -47,7 +47,7 @@ function App() {
     <div className="min-h-screen bg-black">
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img
-          src="/extasis.shot.1-6(2).jpg"
+          src="./extasis.shot.1-6(2).jpg"
           alt="Header"
           className="w-full h-full object-cover"
         />
