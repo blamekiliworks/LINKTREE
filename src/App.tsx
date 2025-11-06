@@ -44,7 +44,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img
           src="./extasis.shot.1-6(2).jpg"
@@ -54,8 +54,8 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
       </div>
 
-      <div className="relative bg-black">
-        <div className="absolute inset-0 pointer-events-none">
+      <div className="relative bg-black overflow-x-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
         </div>
