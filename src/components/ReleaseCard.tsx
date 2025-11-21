@@ -26,32 +26,33 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
           </div>
 
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-xl font-bold text-white">{release.title}</h3>
+            <div className="flex items-center justify-between gap-4 mb-2 flex-wrap">
+              <div className="flex items-center gap-2">
+                <h3 className="text-xl font-bold text-white">{release.title}</h3>
+              </div>
+              <div className="flex gap-2">
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
+                  <div className="text-lg font-bold text-white">{timeLeft.days}</div>
+                  <div className="text-gray-400 text-xs uppercase text-center">Días</div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
+                  <div className="text-lg font-bold text-white">{timeLeft.hours}</div>
+                  <div className="text-gray-400 text-xs uppercase text-center">Hrs</div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
+                  <div className="text-lg font-bold text-white">{timeLeft.minutes}</div>
+                  <div className="text-gray-400 text-xs uppercase text-center">Min</div>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
+                  <div className="text-lg font-bold text-white">{timeLeft.seconds}</div>
+                  <div className="text-gray-400 text-xs uppercase text-center">Seg</div>
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2 text-gray-400 text-sm mb-4">
+            <div className="flex items-center gap-2 text-gray-400 text-sm">
               <Calendar className="w-4 h-4" />
               <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 max-w-md">
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-2 border border-white/10">
-                <div className="text-2xl font-bold text-white">{timeLeft.days}</div>
-                <div className="text-gray-400 text-xs uppercase">Días</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-2 border border-white/10">
-                <div className="text-2xl font-bold text-white">{timeLeft.hours}</div>
-                <div className="text-gray-400 text-xs uppercase">Horas</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-2 border border-white/10">
-                <div className="text-2xl font-bold text-white">{timeLeft.minutes}</div>
-                <div className="text-gray-400 text-xs uppercase">Min</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg p-2 border border-white/10">
-                <div className="text-2xl font-bold text-white">{timeLeft.seconds}</div>
-                <div className="text-gray-400 text-xs uppercase">Seg</div>
-              </div>
             </div>
           </div>
         </div>
@@ -62,13 +63,21 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all">
       <div className="flex items-start gap-4">
-        <div className={`p-3 rounded-xl ${release.type === 'album' ? 'bg-gradient-to-br from-amber-500 to-orange-600' : 'bg-gradient-to-br from-blue-500 to-cyan-600'}`}>
-          {release.type === 'album' ? (
-            <Disc3 className="w-6 h-6 text-white" />
-          ) : (
-            <Music className="w-6 h-6 text-white" />
-          )}
-        </div>
+        {release.title === 'OHM' ? (
+          <img
+            src="./PortadaOHMsinnombre.jpeg"
+            alt="OHM"
+            className="w-12 h-12 rounded-xl object-cover"
+          />
+        ) : (
+          <div className={`p-3 rounded-xl ${release.type === 'album' ? 'bg-gradient-to-br from-amber-500 to-orange-600' : 'bg-gradient-to-br from-blue-500 to-cyan-600'}`}>
+            {release.type === 'album' ? (
+              <Disc3 className="w-6 h-6 text-white" />
+            ) : (
+              <Music className="w-6 h-6 text-white" />
+            )}
+          </div>
+        )}
 
         <div className="flex-1">
           <div className="flex items-center justify-between gap-4 mb-2 flex-wrap">
