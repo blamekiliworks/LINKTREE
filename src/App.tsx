@@ -86,7 +86,7 @@ function App() {
           <div className="mt-20 border-t border-cyan-500/30 pt-12">
             <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-6">
               <a
-                href="https://open.spotify.com"
+                href="https://open.spotify.com/artist/2sxBFdC1obLZ8oEQE0ITkf?si=aLcfD_tPQf2V31kL2Vnu_g"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
@@ -96,7 +96,7 @@ function App() {
               </a>
 
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@blamekili2150"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
@@ -106,7 +106,7 @@ function App() {
               </a>
 
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/blamekili/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
@@ -116,7 +116,7 @@ function App() {
               </a>
 
               <a
-                href="https://tiktok.com"
+                href="https://www.tiktok.com/@blamekili"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
