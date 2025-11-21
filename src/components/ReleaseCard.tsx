@@ -16,7 +16,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   if (showCountdown) {
     return (
       <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all">
-        <div className="flex items-start gap-4">
+        <div className="flex items-center gap-4">
           <div className={`p-3 rounded-xl ${release.type === 'album' ? 'bg-gradient-to-br from-amber-500 to-orange-600' : 'bg-gradient-to-br from-blue-500 to-cyan-600'}`}>
             {release.type === 'album' ? (
               <Disc3 className="w-6 h-6 text-white" />
@@ -62,7 +62,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
 
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all">
-      <div className="flex items-start gap-4">
+      <div className="flex items-center gap-4">
         {release.title === 'OHM' ? (
           <img
             src="./PortadaOHMsinnombre.jpeg"
