@@ -26,10 +26,16 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
           </div>
 
           <div className="flex-1">
-            <div className="flex items-center justify-between gap-4 mb-2 flex-wrap">
-              <div className="flex items-center gap-2">
-                <h3 className="text-xl font-bold text-white">{release.title}</h3>
-              </div>
+            <div className="flex items-center gap-2 mb-2">
+              <h3 className="text-xl font-bold text-white">{release.title}</h3>
+            </div>
+
+            <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+              <Calendar className="w-4 h-4" />
+              <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            </div>
+
+            <div className="flex justify-center">
               <div className="flex gap-2">
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
                   <div className="text-lg font-bold text-white">{timeLeft.days}</div>
@@ -48,11 +54,6 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                   <div className="text-gray-400 text-xs uppercase text-center">Seg</div>
                 </div>
               </div>
-            </div>
-
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <Calendar className="w-4 h-4" />
-              <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
             </div>
           </div>
         </div>
@@ -80,16 +81,22 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
         )}
 
         <div className="flex-1">
-          <div className="flex items-center justify-between gap-4 mb-2 flex-wrap">
-            <div className="flex items-center gap-2">
-              <h3 className="text-xl font-bold text-white">{release.title}</h3>
-              {isReleased && (
-                <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-medium rounded-full">
-                  DISPONIBLE
-                </span>
-              )}
-            </div>
-            {hasLinks && (
+          <div className="flex items-center gap-2 mb-2">
+            <h3 className="text-xl font-bold text-white">{release.title}</h3>
+            {isReleased && (
+              <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-medium rounded-full">
+                DISPONIBLE
+              </span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2 text-gray-400 text-sm mb-3">
+            <Calendar className="w-4 h-4" />
+            <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+          </div>
+
+          {hasLinks && (
+            <div className="flex justify-center">
               <div className="flex flex-wrap gap-2">
                 {release.spotify_link && (
                   <a
@@ -125,13 +132,8 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                   </a>
                 )}
               </div>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 text-gray-400 text-sm">
-            <Calendar className="w-4 h-4" />
-            <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
