@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { supabase, Release } from './lib/supabase';
+import { supabase, Release, isAdmin } from './lib/supabase';
 import { Countdown } from './components/Countdown';
 import { ReleaseCard } from './components/ReleaseCard';
+import { AdminLogin } from './components/AdminLogin';
+import { AdminDashboard } from './components/AdminDashboard';
 import { Music, Youtube, Instagram } from 'lucide-react';
 
 function App() {
@@ -9,6 +11,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [ohmRelease, setOhmRelease] = useState<Release | null>(null);
   const [vidaRelease, setVidaRelease] = useState<Release | null>(null);
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [isAdminUser, setIsAdminUser] = useState(false);
+  const [checkingAdmin, setCheckingAdmin] = useState(false);
 
   useEffect(() => {
     async function fetchReleases() {
@@ -32,7 +37,24 @@ function App() {
     }
 
     fetchReleases();
+
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        setShowAdmin(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
+
+  const handleLoginSuccess = async () => {
+    setCheckingAdmin(true);
+    const adminStatus = await isAdmin();
+    setIsAdminUser(adminStatus);
+    setCheckingAdmin(false);
+  };
 
   if (loading) {
     return (
@@ -42,6 +64,14 @@ function App() {
         </div>
       </div>
     );
+  }
+
+  if (showAdmin && !isAdminUser) {
+    return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  if (showAdmin && isAdminUser) {
+    return <AdminDashboard />;
   }
 
   return (

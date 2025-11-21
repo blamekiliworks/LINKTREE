@@ -23,3 +23,36 @@ export interface Release {
   created_at: string;
   updated_at: string;
 }
+
+export interface LinkAnalytics {
+  id: string;
+  release_id: string;
+  link_type: 'spotify' | 'apple_music' | 'youtube';
+  click_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function trackLinkClick(releaseId: string, linkType: 'spotify' | 'apple_music' | 'youtube') {
+  try {
+    await supabase.rpc('increment_link_click', {
+      p_release_id: releaseId,
+      p_link_type: linkType
+    });
+  } catch (error) {
+    console.error('Error tracking click:', error);
+  }
+}
+
+export async function isAdmin(): Promise<boolean> {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return false;
+
+  const { data } = await supabase
+    .from('admin_users')
+    .select('id')
+    .eq('id', user.id)
+    .maybeSingle();
+
+  return !!data;
+}

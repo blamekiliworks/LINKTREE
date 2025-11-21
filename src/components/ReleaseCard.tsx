@@ -1,5 +1,5 @@
 import { Music, Calendar, Disc3, Youtube } from 'lucide-react';
-import { Release } from '../lib/supabase';
+import { Release, trackLinkClick } from '../lib/supabase';
 import { useCountdown } from '../hooks/useCountdown';
 
 interface ReleaseCardProps {
@@ -12,6 +12,12 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   const hasLinks = release.spotify_link || release.apple_music_link || release.youtube_link;
   const timeLeft = useCountdown(release.release_date);
   const showCountdown = !isReleased && timeLeft && release.title === 'VIDA';
+
+  const handleLinkClick = (linkType: 'spotify' | 'apple_music' | 'youtube') => {
+    if (release.title === 'OHM') {
+      trackLinkClick(release.id, linkType);
+    }
+  };
 
   if (showCountdown) {
     return (
@@ -102,6 +108,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                     href={release.spotify_link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleLinkClick('spotify')}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-medium transition-colors"
                   >
                     <Music className="w-4 h-4" />
@@ -113,6 +120,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                     href={release.apple_music_link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleLinkClick('apple_music')}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-lg text-sm font-medium transition-colors"
                   >
                     <Music className="w-4 h-4" />
@@ -124,6 +132,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                     href={release.youtube_link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleLinkClick('youtube')}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition-colors"
                   >
                     <Youtube className="w-4 h-4" />
