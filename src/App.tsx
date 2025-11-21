@@ -79,20 +79,6 @@ function App() {
             </h2>
           </div>
           {releases.map((release) => {
-            if (release.title === 'VIDA') {
-              return (
-                <div key={release.id} className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
-                  <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
-                    <Countdown
-                      targetDate={release.release_date}
-                      title={release.title}
-                      presaveLink={release.presave_link}
-                    />
-                  </div>
-                </div>
-              );
-            }
             return <ReleaseCard key={release.id} release={release} />;
           })}
         </div>
