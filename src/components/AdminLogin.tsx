@@ -25,10 +25,16 @@ export function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
 
       if (signInError) throw signInError;
 
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        throw new Error('Failed to get user');
+      }
+
       const { data } = await supabase
         .from('admin_users')
         .select('id')
-        .eq('email', email)
+        .eq('id', user.id)
         .maybeSingle();
 
       if (!data) {
