@@ -71,40 +71,6 @@ function App() {
             </p>
           </div>
 
-        {ohmRelease && (
-          <div className="mb-20">
-            <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-wider">
-                {ohmRelease.title}
-              </h2>
-              <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4">
-                {ohmRelease.spotify_link && (
-                  <a
-                    href={ohmRelease.spotify_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
-                  >
-                    <Music className="w-4 h-4" />
-                    Spotify
-                  </a>
-                )}
-                {ohmRelease.youtube_link && (
-                  <a
-                    href={ohmRelease.youtube_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
-                  >
-                    <Youtube className="w-4 h-4" />
-                    YouTube
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
         <div className="space-y-4">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-transparent"></div>
@@ -112,23 +78,24 @@ function App() {
               <span className="text-cyan-400">&gt;</span> Lanzamientos
             </h2>
           </div>
-          {releases.map((release) => (
-            <ReleaseCard key={release.id} release={release} />
-          ))}
+          {releases.map((release) => {
+            if (release.title === 'VIDA') {
+              return (
+                <div key={release.id} className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
+                  <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
+                    <Countdown
+                      targetDate={release.release_date}
+                      title={release.title}
+                      presaveLink={release.presave_link}
+                    />
+                  </div>
+                </div>
+              );
+            }
+            return <ReleaseCard key={release.id} release={release} />;
+          })}
         </div>
-
-        {vidaRelease && (
-          <div className="mt-20 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
-            <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
-              <Countdown
-                targetDate={vidaRelease.release_date}
-                title={vidaRelease.title}
-                presaveLink={vidaRelease.presave_link}
-              />
-            </div>
-          </div>
-        )}
 
           <div className="mt-20 border-t border-cyan-500/30 pt-12">
             <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-6">
