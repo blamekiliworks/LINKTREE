@@ -74,23 +74,33 @@ function App() {
         {ohmRelease && (
           <div className="mb-20">
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-2 uppercase tracking-wider">
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-wider">
                 {ohmRelease.title}
               </h2>
-              <p className="text-cyan-300 text-lg font-mono font-bold mb-4">
-                21 de noviembre · 10:00 AM
-              </p>
-              {ohmRelease.presave_link && (
-                <a
-                  href={ohmRelease.presave_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
-                >
-                  <Music className="w-4 h-4" />
-                  Presave
-                </a>
-              )}
+              <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4">
+                {ohmRelease.spotify_link && (
+                  <a
+                    href={ohmRelease.spotify_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
+                  >
+                    <Music className="w-4 h-4" />
+                    Spotify
+                  </a>
+                )}
+                {ohmRelease.youtube_link && (
+                  <a
+                    href={ohmRelease.youtube_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
+                  >
+                    <Youtube className="w-4 h-4" />
+                    YouTube
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         )}
