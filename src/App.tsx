@@ -7,7 +7,8 @@ import { Music, Youtube, Instagram } from 'lucide-react';
 function App() {
   const [releases, setReleases] = useState<Release[]>([]);
   const [loading, setLoading] = useState(true);
-  const [nextRelease, setNextRelease] = useState<Release | null>(null);
+  const [ohmRelease, setOhmRelease] = useState<Release | null>(null);
+  const [vidaRelease, setVidaRelease] = useState<Release | null>(null);
 
   useEffect(() => {
     async function fetchReleases() {
@@ -21,11 +22,11 @@ function App() {
       } else if (data) {
         setReleases(data);
 
-        const now = new Date().getTime();
-        const upcoming = data.find(
-          (release) => new Date(release.release_date).getTime() > now
-        );
-        setNextRelease(upcoming || null);
+        const ohm = data.find((release) => release.title === 'OHM');
+        const vida = data.find((release) => release.title === 'VIDA');
+
+        setOhmRelease(ohm || null);
+        setVidaRelease(vida || null);
       }
       setLoading(false);
     }
@@ -70,15 +71,26 @@ function App() {
             </p>
           </div>
 
-        {nextRelease && (
-          <div className="mb-20 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
-            <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
-              <Countdown
-                targetDate={nextRelease.release_date}
-                title={nextRelease.title}
-                presaveLink={nextRelease.presave_link}
-              />
+        {ohmRelease && (
+          <div className="mb-20">
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-2 uppercase tracking-wider">
+                {ohmRelease.title}
+              </h2>
+              <p className="text-cyan-300 text-lg font-mono font-bold mb-4">
+                21 de noviembre · 10:00 AM
+              </p>
+              {ohmRelease.presave_link && (
+                <a
+                  href={ohmRelease.presave_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm font-bold uppercase tracking-wider transition-all"
+                >
+                  <Music className="w-4 h-4" />
+                  Presave
+                </a>
+              )}
             </div>
           </div>
         )}
@@ -94,6 +106,19 @@ function App() {
             <ReleaseCard key={release.id} release={release} />
           ))}
         </div>
+
+        {vidaRelease && (
+          <div className="mt-20 relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-pink-500/20 to-cyan-500/20 rounded-xl blur-lg"></div>
+            <div className="relative bg-black/50 backdrop-blur-md rounded-xl p-10 md:p-14 border-2 border-cyan-500/50">
+              <Countdown
+                targetDate={vidaRelease.release_date}
+                title={vidaRelease.title}
+                presaveLink={vidaRelease.presave_link}
+              />
+            </div>
+          </div>
+        )}
 
           <div className="mt-20 border-t border-cyan-500/30 pt-12">
             <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-6">
