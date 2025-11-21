@@ -44,6 +44,20 @@ export async function trackLinkClick(releaseId: string, linkType: 'spotify' | 'a
   }
 }
 
+export async function trackPageView() {
+  try {
+    const userAgent = navigator.userAgent;
+    const referrer = document.referrer || null;
+
+    await supabase.rpc('record_page_view', {
+      p_user_agent: userAgent,
+      p_referrer: referrer
+    });
+  } catch (error) {
+    console.error('Error tracking page view:', error);
+  }
+}
+
 export async function isAdmin(): Promise<boolean> {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return false;

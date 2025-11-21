@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, Release, isAdmin } from './lib/supabase';
+import { supabase, Release, isAdmin, trackPageView } from './lib/supabase';
 import { Countdown } from './components/Countdown';
 import { ReleaseCard } from './components/ReleaseCard';
 import { AdminLogin } from './components/AdminLogin';
@@ -16,6 +16,8 @@ function App() {
   const [checkingAdmin, setCheckingAdmin] = useState(false);
 
   useEffect(() => {
+    trackPageView();
+
     async function fetchReleases() {
       const { data, error } = await supabase
         .from('releases')

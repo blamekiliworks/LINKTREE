@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BarChart3, LogOut, Music, Youtube } from 'lucide-react';
+import { BarChart3, LogOut, Music, Youtube, Users } from 'lucide-react';
 import { supabase, LinkAnalytics, Release } from '../lib/supabase';
 
 interface AnalyticsWithRelease extends LinkAnalytics {
@@ -8,17 +8,30 @@ interface AnalyticsWithRelease extends LinkAnalytics {
 
 export function AdminDashboard() {
   const [analytics, setAnalytics] = useState<AnalyticsWithRelease[]>([]);
+  const [pageViews, setPageViews] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     checkAuth();
     loadAnalytics();
+    loadPageViews();
   }, []);
 
   const checkAuth = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     setUser(user);
+  };
+
+  const loadPageViews = async () => {
+    try {
+      const { data, error } = await supabase.rpc('get_total_page_views');
+      if (!error && data !== null) {
+        setPageViews(data);
+      }
+    } catch (error) {
+      console.error('Error loading page views:', error);
+    }
   };
 
   const loadAnalytics = async () => {
@@ -72,6 +85,29 @@ export function AdminDashboard() {
               Sign Out
             </button>
           </div>
+        </div>
+
+        <div className="mb-8">
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-4">
+                <div className="p-4 bg-blue-500/20 rounded-xl">
+                  <Users className="w-8 h-8 text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white">Website Visitors</h3>
+                  <p className="text-gray-400 text-sm">Total page views</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-5xl font-bold text-white">{pageViews.toLocaleString()}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <h2 className="text-2xl font-bold text-white mb-6">Link Analytics</h2>
         </div>
 
         <div className="grid gap-6">
