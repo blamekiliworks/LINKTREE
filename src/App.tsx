@@ -78,7 +78,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
-      <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+      <div className="relative h-[25vh] md:h-[30vh] overflow-hidden">
         <img
           src="./extasis.shot.1-6(2).jpg"
           alt="Header"
@@ -93,12 +93,12 @@ function App() {
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
-          <div className="text-center mb-20">
-            <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-wider uppercase">
+        <div className="relative z-10 container mx-auto px-4 py-8 max-w-4xl">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-wider uppercase">
               <span className="text-cyan-400">[</span>GÉNESIS<span className="text-cyan-400">]</span>
             </h1>
-            <p className="text-cyan-300 text-sm uppercase tracking-[0.2em] font-mono font-bold">
+            <p className="text-cyan-300 text-xs uppercase tracking-[0.2em] font-mono font-bold">
               &gt; SE VIENEN COSITAS...
             </p>
           </div>
