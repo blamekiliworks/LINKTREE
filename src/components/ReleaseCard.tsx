@@ -14,9 +14,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   const showCountdown = !isReleased && timeLeft && release.title === 'VIDA';
 
   const handleLinkClick = (linkType: 'spotify' | 'apple_music' | 'youtube') => {
-    if (release.title === 'OHM' || release.title === 'VIDA') {
-      trackLinkClick(release.id, linkType);
-    }
+    trackLinkClick(release.id, linkType);
   };
 
   if (showCountdown) {
