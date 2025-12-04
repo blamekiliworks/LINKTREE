@@ -11,7 +11,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   const isReleased = release.is_released;
   const hasLinks = release.spotify_link || release.apple_music_link || release.youtube_link;
   const timeLeft = useCountdown(release.release_date);
-  const showCountdown = !isReleased && timeLeft && release.title === 'VIDA';
+  const showCountdown = !isReleased && timeLeft && (release.title === 'VIDA' || release.title === 'EXTASIS');
 
   const handleLinkClick = (linkType: 'spotify' | 'apple_music' | 'youtube') => {
     trackLinkClick(release.id, linkType);
@@ -90,8 +90,8 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
 
         <div className="flex-1">
           <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
+            <div className={isReleased ? "flex-1 text-center" : ""}>
+              <div className={`flex items-center gap-2 ${isReleased ? 'justify-center' : ''} mb-1`}>
                 <h3 className="text-xl font-bold text-white">{release.title}</h3>
                 {isReleased && (
                   <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-medium rounded-full">
@@ -99,10 +99,12 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
-                <Calendar className="w-4 h-4" />
-                <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-              </div>
+              {!isReleased && (
+                <div className="flex items-center gap-2 text-gray-400 text-sm">
+                  <Calendar className="w-4 h-4" />
+                  <span>{releaseDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                </div>
+              )}
             </div>
 
             {hasLinks && (
