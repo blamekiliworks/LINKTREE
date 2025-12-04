@@ -8,7 +8,7 @@ interface ReleaseCardProps {
 
 export function ReleaseCard({ release }: ReleaseCardProps) {
   const releaseDate = new Date(release.release_date);
-  const isReleased = releaseDate.getTime() <= new Date().getTime();
+  const isReleased = release.is_released;
   const hasLinks = release.spotify_link || release.apple_music_link || release.youtube_link;
   const timeLeft = useCountdown(release.release_date);
   const showCountdown = !isReleased && timeLeft && release.title === 'VIDA';
