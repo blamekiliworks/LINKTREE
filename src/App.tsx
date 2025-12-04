@@ -94,7 +94,7 @@ function App() {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 py-8 max-w-4xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 ml-8 md:ml-16">
             <h1 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-wider uppercase">
               <span className="text-cyan-400">[</span>GÉNESIS<span className="text-cyan-400">]</span>
             </h1>
