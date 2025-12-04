@@ -82,7 +82,7 @@ function App() {
         <img
           src="./extasis.shot.1-6(2).jpg"
           alt="Header"
-          className="w-full h-full object-cover object-bottom"
+          className="w-full h-full object-cover object-[center_75%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
       </div>
