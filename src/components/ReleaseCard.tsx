@@ -115,10 +115,10 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => handleLinkClick('spotify')}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-0 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-medium transition-colors"
                   >
                     <img src="./adobe_express_-_file(1).png" alt="Spotify" className="w-12 h-12 -my-4 -ml-2" />
-                    <span className="ml-1">Spotify</span>
+                    Spotify
                   </a>
                 )}
                 {release.apple_music_link && (
