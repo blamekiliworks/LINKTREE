@@ -4,7 +4,7 @@ import { Countdown } from './components/Countdown';
 import { ReleaseCard } from './components/ReleaseCard';
 import { AdminLogin } from './components/AdminLogin';
 import { AdminDashboard } from './components/AdminDashboard';
-import { Youtube, Instagram } from 'lucide-react';
+import { Music, Youtube, Instagram } from 'lucide-react';
 
 function App() {
   const [releases, setReleases] = useState<Release[]>([]);
@@ -123,7 +123,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
-                <img src="./adobe_express_-_file(1).png" alt="Spotify" className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Music className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
                 <span className="text-cyan-300 font-mono font-bold text-xs sm:text-sm uppercase tracking-wider">Spotify</span>
               </a>
 
