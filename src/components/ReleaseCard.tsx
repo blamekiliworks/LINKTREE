@@ -117,7 +117,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
                     onClick={() => handleLinkClick('spotify')}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-medium transition-colors"
                   >
-                    <img src="./adobe_express_-_file(1).png" alt="Spotify" className="w-4 h-4" />
+                    <img src="./adobe_express_-_file(1).png" alt="Spotify" className="w-12 h-12" />
                     Spotify
                   </a>
                 )}
