@@ -14,7 +14,7 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
   const showCountdown = !isReleased && timeLeft && release.title === 'VIDA';
 
   const handleLinkClick = (linkType: 'spotify' | 'apple_music' | 'youtube') => {
-    if (release.title === 'OHM') {
+    if (release.title === 'OHM' || release.title === 'VIDA') {
       trackLinkClick(release.id, linkType);
     }
   };
@@ -72,6 +72,12 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
           <img
             src="./PortadaOHMsinnombre.jpeg"
             alt="OHM"
+            className="w-12 h-12 rounded-xl object-cover"
+          />
+        ) : release.title === 'VIDA' ? (
+          <img
+            src="./vida_portada_spoty(1).jpg"
+            alt="VIDA"
             className="w-12 h-12 rounded-xl object-cover"
           />
         ) : (
