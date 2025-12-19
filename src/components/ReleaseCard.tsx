@@ -78,6 +78,12 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
             alt="VIDA"
             className="w-12 h-12 rounded-xl object-cover"
           />
+        ) : release.title === 'EXTASIS' ? (
+          <img
+            src="./extasis_portada_spoty(1).png"
+            alt="EXTASIS"
+            className="w-12 h-12 rounded-xl object-cover"
+          />
         ) : (
           <div className={`p-3 rounded-xl ${release.type === 'album' ? 'bg-gradient-to-br from-amber-500 to-orange-600' : 'bg-gradient-to-br from-blue-500 to-cyan-600'}`}>
             {release.type === 'album' ? (
