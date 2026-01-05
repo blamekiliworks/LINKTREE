@@ -84,6 +84,12 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
             alt="EXTASIS"
             className="w-12 h-12 rounded-xl object-cover"
           />
+        ) : release.title === 'LATELY' ? (
+          <img
+            src="./latelly_portada_spoty.png"
+            alt="LATELY"
+            className="w-12 h-12 rounded-xl object-cover"
+          />
         ) : (
           <div className={`p-3 rounded-xl ${release.type === 'album' ? 'bg-gradient-to-br from-amber-500 to-orange-600' : 'bg-gradient-to-br from-blue-500 to-cyan-600'}`}>
             {release.type === 'album' ? (
