@@ -2,6 +2,7 @@ import { Music, Calendar, Disc3, Youtube, ExternalLink } from 'lucide-react';
 import { Release, trackLinkClick } from '../lib/supabase';
 import { useCountdown } from '../hooks/useCountdown';
 import { Link } from 'react-router-dom';
+import { metaPixelEvents } from '../lib/metaPixel';
 
 interface ReleaseCardProps {
   release: Release;
@@ -16,6 +17,8 @@ export function ReleaseCard({ release }: ReleaseCardProps) {
 
   const handleLinkClick = (linkType: 'spotify' | 'apple_music' | 'youtube') => {
     trackLinkClick(release.id, linkType);
+    const platformName = linkType === 'spotify' ? 'Spotify' : linkType === 'apple_music' ? 'Apple Music' : 'YouTube';
+    metaPixelEvents.clickLink(release.is_released ? 'stream' : 'presave', platformName, release.title);
   };
 
   if (showCountdown) {

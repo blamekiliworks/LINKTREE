@@ -4,6 +4,7 @@ import { ReleaseCard } from '../components/ReleaseCard';
 import { AdminLogin } from '../components/AdminLogin';
 import { AdminDashboard } from '../components/AdminDashboard';
 import { Music, Youtube, Instagram } from 'lucide-react';
+import { trackCustomEvent } from '../lib/metaPixel';
 
 export function HomePage() {
   const [releases, setReleases] = useState<Release[]>([]);
@@ -47,6 +48,10 @@ export function HomePage() {
     const adminStatus = await isAdmin();
     setIsAdminUser(adminStatus);
     setCheckingAdmin(false);
+  };
+
+  const handleSocialClick = (platform: string) => {
+    trackCustomEvent('ClickSocialLink', { platform, page: 'home' });
   };
 
   if (loading) {
@@ -112,6 +117,7 @@ export function HomePage() {
                 href="https://open.spotify.com/artist/2sxBFdC1obLZ8oEQE0ITkf?si=aLcfD_tPQf2V31kL2Vnu_g"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('Spotify')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <Music className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
@@ -122,6 +128,7 @@ export function HomePage() {
                 href="https://www.youtube.com/@blamekili2150"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('YouTube')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <Youtube className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
@@ -132,6 +139,7 @@ export function HomePage() {
                 href="https://www.instagram.com/blamekili/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('Instagram')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <Instagram className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
@@ -142,6 +150,7 @@ export function HomePage() {
                 href="https://www.tiktok.com/@blamekili"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('TikTok')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <svg className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase, Release, trackPageView, trackLinkClick } from '../lib/supabase';
 import { Music, Youtube, Calendar, ArrowLeft, Disc3 } from 'lucide-react';
 import { useCountdown } from '../hooks/useCountdown';
+import { metaPixelEvents, trackCustomEvent } from '../lib/metaPixel';
 
 export function ReleasePage() {
   const { slug } = useParams<{ slug: string }>();
@@ -24,6 +25,8 @@ export function ReleasePage() {
         console.error('Error fetching release:', error);
       } else if (data) {
         setRelease(data);
+        metaPixelEvents.visitReleasePage(data.title, slug || '');
+        metaPixelEvents.viewContent(data.title, data.type);
       }
       setLoading(false);
     }
@@ -34,7 +37,13 @@ export function ReleasePage() {
   const handleLinkClick = (linkType: 'spotify' | 'apple_music' | 'youtube') => {
     if (release) {
       trackLinkClick(release.id, linkType);
+      const platformName = linkType === 'spotify' ? 'Spotify' : linkType === 'apple_music' ? 'Apple Music' : 'YouTube';
+      metaPixelEvents.clickLink(release.is_released ? 'stream' : 'presave', platformName, release.title);
     }
+  };
+
+  const handleSocialClick = (platform: string) => {
+    trackCustomEvent('ClickSocialLink', { platform, page: 'release', release: release?.title });
   };
 
   const getImage = () => {
@@ -235,6 +244,7 @@ export function ReleasePage() {
                 href="https://open.spotify.com/artist/2sxBFdC1obLZ8oEQE0ITkf?si=aLcfD_tPQf2V31kL2Vnu_g"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('Spotify')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <Music className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
@@ -245,6 +255,7 @@ export function ReleasePage() {
                 href="https://www.youtube.com/@blamekili2150"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('YouTube')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <Youtube className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" />
@@ -255,6 +266,7 @@ export function ReleasePage() {
                 href="https://www.instagram.com/blamekili/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('Instagram')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <svg className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
@@ -267,6 +279,7 @@ export function ReleasePage() {
                 href="https://www.tiktok.com/@blamekili"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleSocialClick('TikTok')}
                 className="group flex items-center gap-2 px-4 sm:px-6 py-3 bg-black/50 border-2 border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
               >
                 <svg className="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
