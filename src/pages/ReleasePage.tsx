@@ -109,7 +109,7 @@ export function ReleasePage() {
                 src={getImage()}
                 alt={release.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: 'center -1px' }}
+                style={{ objectPosition: 'center -5px' }}
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
             </div>
