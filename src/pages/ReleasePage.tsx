@@ -144,8 +144,10 @@ export function ReleasePage() {
               </div>
 
               {isReleased && (
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-400 text-emerald-400 text-sm font-bold rounded-full mb-6 uppercase">
-                  DISPONIBLE AHORA
+                <div className="flex justify-center mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-400 text-emerald-400 text-sm font-bold rounded-full uppercase">
+                    ESCÚCHALO AHORA
+                  </div>
                 </div>
               )}
 
@@ -184,9 +186,6 @@ export function ReleasePage() {
 
               {hasLinks && (
                 <div className="space-y-4">
-                  <h2 className="text-xl font-bold text-cyan-400 mb-4 uppercase tracking-wider">
-                    {isReleased ? 'Escúchalo Ahora' : 'Pre-Save'}
-                  </h2>
                   <div className="flex flex-wrap justify-center gap-3">
                     {release.spotify_link && (
                       <a
