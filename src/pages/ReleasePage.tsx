@@ -39,12 +39,6 @@ export function ReleasePage() {
       trackLinkClick(release.id, linkType);
       const platformName = linkType === 'spotify' ? 'Spotify' : linkType === 'apple_music' ? 'Apple Music' : 'YouTube';
       metaPixelEvents.clickLink(release.is_released ? 'stream' : 'presave', platformName, release.title);
-      trackCustomEvent('ClickDirectLink', {
-        platform: platformName,
-        release_name: release.title,
-        link_type: release.is_released ? 'stream' : 'presave',
-        page: 'release'
-      });
     }
   };
 
