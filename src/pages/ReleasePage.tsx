@@ -52,6 +52,16 @@ export function ReleasePage() {
     }
   };
 
+  const getImagePosition = () => {
+    switch (release?.title) {
+      case 'OHM':
+      case 'VIDA':
+        return 'center 33%';
+      default:
+        return 'center -5px';
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -109,7 +119,7 @@ export function ReleasePage() {
                 src={getImage()}
                 alt={release.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: 'center -5px' }}
+                style={{ objectPosition: getImagePosition() }}
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
             </div>
